@@ -7,8 +7,9 @@ This file creates your application.
 
 from app import app
 from flask import render_template, request, redirect, url_for, flash
-
-
+from app import mail
+from flask_mail import Message
+from forms import ContactForm
 ###
 # Routing for your application.
 ###
@@ -56,3 +57,17 @@ def page_not_found(error):
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port="8080")
+    
+@app.route('/contact')
+def contact():
+    form=ContactForm()
+    if request.method=="POST":
+        if form.validate_on_submit():
+            msg= Message("subject", sender=("name","email"),recipients=["to@example.com"])
+            msg.body = 'message'
+            mail.send(msg)
+    return render_template('contact.html', form=form)
+            
+            
+            
+    
