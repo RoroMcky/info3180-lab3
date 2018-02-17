@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">  
+</head>
+
+{% endblock %}
+
+{% block main %}
+<h2>Contact Form</h2>
+<p>Fill in this form to contact site owners</p>
+
+<form action="{{ url_for('contact') }}" method="post">
+
+{{form.name.label}}
+<p>Please Enter Your Full Name:</p>
+{{form.name}}
+
+{{form.email.label}}
+<p>Please Enter Your Email Address</p>
+{{form.email}}
+
+{{form.subject.label}}
+<p>Please Enter the Subject of Your Message</p>
+{{form.subject}}
+
+{{form.message.label}}
+<p>Please Enter the message you would like to send</p>
+{{form.message}}
+<button type='submit'>Send</button>
+</form>
+
+
