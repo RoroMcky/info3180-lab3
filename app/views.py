@@ -9,7 +9,7 @@ from app import app
 from flask import render_template, request, redirect, url_for, flash
 from app import mail
 from flask_mail import Message
-from forms import ContactForm
+from forms import MyForm
 ###
 # Routing for your application.
 ###
@@ -58,14 +58,16 @@ def page_not_found(error):
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port="8080")
     
-@app.route('/contact')
+@app.route('/contact',methods=["GET","POST"])
 def contact():
-    form=ContactForm()
+    form=MyForm()
     if request.method=="POST":
         if form.validate_on_submit():
-            msg= Message("subject", sender=("name","email"),recipients=["to@example.com"])
+            msg= Message("subject", sender=("name","email"),recipients=["mckenizerochelle@yahoo.com"])
             msg.body = 'message'
             mail.send(msg)
+            flash('message has been sent!!','success')
+            return redirect(url_for('home'))
     return render_template('contact.html', form=form)
             
             
