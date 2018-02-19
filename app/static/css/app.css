@@ -4,6 +4,8 @@ body {
 h2
 {
     border-bottom: double;
+    padding:0px;
+    margin:0px;
 }
 .req
 {
