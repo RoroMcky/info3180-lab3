@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block main %}
-{{ contactForm.csrf_token }}
+
+{{ form.csrf_token }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">  
 <h2>Contact Form</h2>
 
@@ -9,19 +10,22 @@
 
 <form action="{{ url_for('contact') }}" method="POST">
 <div class="formData">
-{{form.name.label}}
+{{form.name.label}} <div class="req">(Required)</div>
 <p>Please Enter Your Full Name:</p>
 {{form.name}}
+<br>
 
-{{form.email.label}}
+{{form.email.label}} <div class="req">(Required)</div>
 <p>Please Enter Your Email Address</p>
 {{form.email}}
+<br>
 
-{{form.subject.label}}
+{{form.subject.label}}<div class="req">(Required)</div>
 <p>Please Enter the Subject of Your Message</p>
 {{form.subject}}
+<br>
 
-{{form.message.label}}
+{{form.message.label}}<div class="req">(Required)</div>
 <p>Please Enter the message you would like to send</p>
 {{form.message}}
 </div>
@@ -30,3 +34,4 @@
 {% endblock %}
 
 
+ 
